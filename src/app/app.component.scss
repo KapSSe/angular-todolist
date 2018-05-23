@@ -1,0 +1,30 @@
+
+.todoapp{
+    margin-top:40px;
+}
+
+.card{
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+        & button{
+            margin: 10px 10px 10px auto;
+        }
+        &__heading{
+            margin-top: 0;
+            margin-bottom: 20px;
+            text-transform: capitalize;
+        }
+        & label{
+            padding: 20px;
+                & span{
+                    color:black;
+                }
+        }
+        &__added{
+            text-align: right;
+            font-size: 11px;
+            padding:10px;
+        }
+}
