@@ -1,1 +1,5 @@
-@import 'global-styles/_inputs.scss';
+@import 'app/styles/_inputs';
+
+body{
+    min-height: 101vh;
+}

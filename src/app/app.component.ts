@@ -1,44 +1,47 @@
-import {Component} from '@angular/core';
-import {trigger, state, style, animate, transition} from '@angular/animations';
-import {Todo} from './todo';
-import {TodoDataService} from './todo-data.service';
+import { Component, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
-  providers: [TodoDataService],
 })
 
 export class AppComponent {
 
-  newTodo: Todo = new Todo();
+  taskPool = [];
+  taskDone = [];
+  taskFailed = [];
 
-  constructor(private todoDataService: TodoDataService) {
+
+  taskAdded(task) {
+    return this.pushTask(task);
   }
 
-  addTodo() {
-    this.todoDataService.addTodo(this.newTodo);
-    this.newTodo = new Todo();
+  pushTask(task) {
+    this.taskPool.push(task);
   }
 
-  toggleTodoComplete(todo) {
-    this.todoDataService.toggleTodoComplete(todo);
+  filterStatus(i) {
+    const taskStatus = this.taskPool[i].status;
+    taskStatus === 'done' ? this.moveToDone(i) :
+    taskStatus === 'failed' ? this.moveToFailed(i) :
+    console.error('there is no task to filter');
   }
 
-  removeTodo(todo) {
-    this.todoDataService.deleteTodoById(todo.id);
-    todo.state = 'inactive';
-    console.log(todo.state);
-  }
+   moveToDone(i) {
+    this.taskPool[i].scope = 'done';
+    this.taskDone.push(this.taskPool[i]);
+    this.clearFromPool(i);
+   }
 
-  editTodo(todo) {
-    console.log(todo);
-  }
+   moveToFailed(i) {
+    this.taskPool[i].scope = 'failed';
+    this.taskFailed.push(this.taskPool[i]);
+    this.clearFromPool(i);
+   }
 
-  get todos() {
-    return this.todoDataService.getAllTodos();
-  }
-
+   clearFromPool(i) {
+    this.taskPool.splice(i, 1);
+   }
 }
 

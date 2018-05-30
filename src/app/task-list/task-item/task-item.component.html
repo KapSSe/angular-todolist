@@ -1,0 +1,16 @@
+<div @fade *ngFor="let task of taskList;let i = index" class="col s12 task">
+    <div class="card">
+        <div class="card-content">
+          <h4>{{taskList[i].title}}</h4>
+          <p>{{taskList[i].desc}}</p>
+        </div>
+        <div *ngIf="!readonly" class="card-action task__action">
+            <a (click)="changeToDone(i)" class="green lighten-1 waves-effect waves-light btn-small">Done<i class="material-icons right">done</i></a>
+            <a (click)="changeToFailed(i)" class="red lighten-3 waves-effect waves-light btn-small">Remove<i class="material-icons right">clear</i></a>
+        </div>
+        <div *ngIf="readonly">
+            <div *ngIf="done" class="task__mark green lighten-2"></div>
+            <div *ngIf="failed" class="task__mark red lighten-3"></div>
+        </div>
+      </div>
+</div>
