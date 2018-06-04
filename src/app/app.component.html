@@ -1,5 +1,1 @@
-<app-header></app-header>
-<app-task-editor (taskCreated)="taskAdded($event)"></app-task-editor>
-<app-task-list [taskList]="taskPool" (moveToDone)="filterStatus($event)"></app-task-list>
-<app-task-list-done [taskList]="taskDone"></app-task-list-done>
-<app-task-list-failed [taskList]="taskFailed"></app-task-list-failed>
+<router-outlet></router-outlet>

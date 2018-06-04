@@ -1,0 +1,20 @@
+<section *ngIf="editable" class="editor container">
+    <div class="row">
+        <div class="col s12">
+            <div class="input-field ">
+                <input id="taskTitle" type="text" #taskTitle>
+                <label for="taskTitle">Title</label>
+            </div>
+        </div>
+        <div class="col s12">
+            <div class="input-field ">
+                <input id="taskDesc" type="text" #taskDesc>
+                <label for="taskDesc">Description</label>
+            </div>
+        </div>
+        <div *ngIf="editable" class="col s12 controls">
+            <div @fade *ngIf="error" class="error">Please fill up all fields</div>
+            <a (click)="checkTask(taskTitle,taskDesc)" class="green lighten-1 right waves-effect waves-light btn-small"><i class="material-icons right">add</i>Add to list</a>
+        </div>
+    </div>
+</section>

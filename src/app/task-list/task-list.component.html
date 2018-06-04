@@ -1,4 +1,16 @@
-
 <section class="container">
-      <app-task-item [readonly]="false" (removingTask)="removeTask($event)" [taskList]="taskList"></app-task-item>
+      <div @fade *ngFor="let task of tasks;let i = index" class="col s12 task">
+            <div class="card">
+                  <div class="card-content">
+                        <h4>{{task.title}}</h4>
+                        <p>{{task.desc}}</p>
+                        </div>
+                  <div *ngIf="task.scope.pool" class="card-action task__action">
+                        <a (click)="moveToDone(i)" class="green lighten-1 waves-effect waves-light btn-small">Done<i class="material-icons right">done</i></a>
+                        <a (click)="moveToFailed(i)" class="red lighten-3 waves-effect waves-light btn-small">Remove<i class="material-icons right">clear</i></a>
+                  </div>
+                  <div *ngIf="task.scope.done" class="task__mark green lighten-2"></div>
+                  <div *ngIf="task.scope.failed" class="task__mark red lighten-3"></div>
+            </div>
+      </div>
 </section>
