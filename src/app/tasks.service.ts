@@ -1,12 +1,25 @@
+import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
+
+@Injectable()
+
 export class TasksService {
+
 
   taskPool = [];
   taskDone = [];
   taskFailed = [];
 
+  private taskLengthSource = new BehaviorSubject<number>(0);
+  taskItem = this.taskLengthSource.asObservable();
+
+  updateCounter() {
+    this.taskLengthSource.next(this.taskPool.length);
+  }
 
   getTask(task: {title: string, desc: string, status: string, scope: {}}) {
     this.pushTask(task);
+    this.updateCounter();
   }
 
   loadTasks(key) {
@@ -43,6 +56,7 @@ export class TasksService {
 
   clearPool(i) {
     this.taskPool.splice(i, 1);
+    this.updateCounter();
   }
 
 }

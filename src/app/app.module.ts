@@ -5,7 +5,7 @@ import { RouterModule } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { TaskEditorModule } from './task-editor-module/task-editor.module';
-
+import { LogoModuleModule } from './logo-module/logo-module.module';
 import { TasksService } from './tasks.service';
 
 import { AppComponent } from './app.component';
@@ -32,6 +32,7 @@ const routes = [
     FormsModule,
     BrowserAnimationsModule,
     TaskEditorModule,
+    LogoModuleModule,
     RouterModule.forRoot(routes)
   ],
   providers: [TasksService],
